@@ -22,16 +22,33 @@ class BlendedMVS (BaseStereoViewDataset):
         super().__init__(*args, **kwargs)
         self._load_data(split)
 
+    # old data loader
+    # def _load_data(self, split):
+    #     pairs = np.load(osp.join(self.ROOT, 'blendedmvs_pairs.npy'))
+    #     if split is None:
+    #         selection = slice(None)
+    #     if split == 'train':
+    #         # select 90% of all scenes
+    #         selection = (pairs['seq_low'] % 10) > 0
+    #     if split == 'val':
+    #         # select 10% of all scenes
+    #         selection = (pairs['seq_low'] % 10) == 0
+    #     self.pairs = pairs[selection]
+
+    #     # list of all scenes
+    #     self.scenes = np.unique(self.pairs['seq_low'])  # low is unique enough
+
+    # new data loader
     def _load_data(self, split):
         pairs = np.load(osp.join(self.ROOT, 'blendedmvs_pairs.npy'))
         if split is None:
             selection = slice(None)
         if split == 'train':
             # select 90% of all scenes
-            selection = (pairs['seq_low'] % 10) > 0
+            selection = (pairs['seq_low'] % 10) != 4
         if split == 'val':
             # select 10% of all scenes
-            selection = (pairs['seq_low'] % 10) == 0
+            selection = (pairs['seq_low'] % 10) == 4
         self.pairs = pairs[selection]
 
         # list of all scenes
