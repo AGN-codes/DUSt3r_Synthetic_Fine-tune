@@ -146,7 +146,7 @@ def train(args):
         print(model.load_state_dict(ckpt['model'], strict=False))
         del ckpt  # in case it occupies memory
 
-# +++ NEW FREEZING BLOCK (Inverted Logic) +++
+# NEW FREEZING BLOCK (Inverted Logic)
     if args.trainable:
         trainable_prefixes = [p.strip() for p in args.trainable.split(',')]
         print(f">> Freezing all layers EXCEPT those matching: {trainable_prefixes}")
@@ -162,7 +162,7 @@ def train(args):
                 param.requires_grad = False
                 frozen_count += 1
         print(f">> Froze {frozen_count} parameter tensors. {trainable_count} remain trainable.")
-    # +++++++++++++++++++++++++++++++++++++++++++
+    # END
 
     eff_batch_size = args.batch_size * args.accum_iter * misc.get_world_size()
     if args.lr is None:  # only base_lr is specified
