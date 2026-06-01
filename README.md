@@ -8,10 +8,6 @@ This repository is a modified version of the original [DUSt3R repository by Nave
 * Implemented evaluation and assessment notebooks for synthetic fine-tuning benchmarks.
 
 
-Here is the complete Markdown text formatted for your GitHub `README.md`.
-
-I have organized your exact text into clean sections using Markdown headers (`##`, `###`) and wrapped all the commands inside code blocks so they are easy for users to copy and run. No code has been altered.
-
 ---
 
 ### To run assessment
